@@ -7,7 +7,7 @@
 	<node pkg="tf" type="static_transform_publisher" name="kinect_static_tf_pub" respawn="true"
 	 args="-0.00 0 1.5572 0.017453 0.1047198 -0.017453 base_link camera_link 100" />
 	
-	<!-- Image viewers.  To save an image, right-click on the screen.  Images will be saved to the .ros directory by default -->
+	<!-- Image viewers.  To save an image, right-click on the window.  Images will be saved to the .ros directory by default -->
 	<node pkg="image_view" type="image_view" name="depth_image_viewer" output="screen">
 		<remap from="image" to="/camera/depth/image_rect"/>
 	</node>

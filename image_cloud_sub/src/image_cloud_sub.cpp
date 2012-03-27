@@ -29,7 +29,6 @@ using std::string;
 // Shorthand for our point cloud type
 typedef pcl::PointCloud<pcl::PointXYZRGB> PointCloudXYZRGB;
 
-
 // Global variables here
 ros::Publisher             cloud_pub_;
 image_transport::Publisher image_pub_;
@@ -49,8 +48,6 @@ void allCB(const sensor_msgs::ImageConstPtr& image_msg,
 		ROS_ERROR("cv_bridge exception: %s", e.what());
 		return;
 	}
-	// cv_ptr now points to a CvImagePtr which has a cv::Mat as a class member.
-	// To get it, use cv_ptr->image
 	
 	ROS_INFO_STREAM(boost::format("Callback got an image in format %s, size %dx%d")
 		%cv_ptr->encoding %cv_ptr->image.size().width %cv_ptr->image.size().height);
@@ -74,11 +71,10 @@ int main (int argc, char** argv)
 	
 	// Get some parameters
 	string mystringparam;
-	private_nh.param("test", mystringparam, string("this is a default value"));
-	ROS_INFO_STREAM("mystringparam = " << mystringparam);
-	
 	double mydoubleparam;
+	private_nh.param("test" , mystringparam, string("this is a default value"));
 	private_nh.param("test2", mydoubleparam, 1.0);
+	ROS_INFO_STREAM("mystringparam = " << mystringparam);
 	ROS_INFO_STREAM("mydoubleparam = " << mydoubleparam);
 	
 	// Subscribe to an image, cloud, and camera info.
@@ -99,12 +95,10 @@ int main (int argc, char** argv)
 	sync.registerCallback( boost::bind(&allCB, _1, _2, _3) );
 	
 	// publisher for the image
-	string image_topic = nh.resolveName("out_image");
-  image_pub_ = it.advertise(image_topic, 1);
+  image_pub_ = it.advertise(ros::this_node::getName() + "/out_image", 1);
 
 	// publisher for the point cloud
-	string cloud_topic = nh.resolveName("out_cloud");
-	cloud_pub_ = nh.advertise<PointCloudXYZRGB>(cloud_topic, 1);
+	cloud_pub_ = nh.advertise<PointCloudXYZRGB>(ros::this_node::getName() + "/out_cloud", 1);
 
 	window_name_ = "Image from Kinect";
 	cv::namedWindow(window_name_.c_str());

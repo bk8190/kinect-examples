@@ -21,6 +21,7 @@ void imageCB(const sensor_msgs::ImageConstPtr& image_msg)
 {
 	// Convert the image from ROS format to OpenCV format
 	// cv_ptr is a CvImagePtr which has a cv::Mat as a class member.
+	// See http://www.ros.org/doc/api/cv_bridge_redesign/html/namespacecv__bridge.html
 	cv_bridge::CvImagePtr cv_ptr;
 	try	{
 		cv_ptr = cv_bridge::toCvCopy(image_msg);
@@ -63,11 +64,10 @@ int main (int argc, char** argv)
 	ROS_INFO_STREAM("mystringparam = " << mystringparam);
 	ROS_INFO_STREAM("mydoubleparam = " << mydoubleparam);
 	
-	// Subscribe to an image.
+	// Subscribe to an image. Note the use of image_transport::Subscriber instead of ros::Subscriber
 	image_transport::Subscriber image_sub = it.subscribe("in_image", 1, boost::bind(&imageCB, _1) );
 	
-	// publisher for the output image
-	string image_topic = nh.resolveName(ros::this_node::getName() + "/out_image");
+	// publisher for the output image, again using image_transport
   image_pub_ = it.advertise(ros::this_node::getName() + "/out_image", 1);
 
 	window_name_ = "Image from Kinect";
