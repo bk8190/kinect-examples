@@ -59,7 +59,7 @@ void allCB(const sensor_msgs::ImageConstPtr& image_msg,
 	ROS_INFO_STREAM(boost::format("Cloud has size %dx%d. organized=%s")
 		%cloud.width %cloud.height %(cloud.isOrganized() ? "true" : "false") );
 	
-	// Say you found something interesting at pixel (300,150) in the image and want to know its position in 3D space.  Because the cloud data from the Kinect is organized, you can just pick off the point at (300,150) in the cloud.
+	// Say you found something interesting at pixel (300,150) in the image and want to know its position in 3D space.  Because the cloud data from the Kinect is organized, you can just pick off the point at (300,150) in the cloud.  Also, draw a red circle over the desired point.
 	int row = 150; int col = 300;
 	cv::circle(cv_ptr->image, cv::Point(col,row), 10, CV_RGB(255,0,0));
 	
