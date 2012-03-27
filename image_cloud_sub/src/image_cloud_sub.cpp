@@ -59,12 +59,11 @@ void allCB(const sensor_msgs::ImageConstPtr& image_msg,
 	ROS_INFO_STREAM(boost::format("Cloud has size %dx%d. organized=%s")
 		%cloud.width %cloud.height %(cloud.isOrganized() ? "true" : "false") );
 	
-	// Say you found something interesting at pixel (150,200) in the image and want to know its position in 3D space.
-	// Because the cloud data from the Kinect is organized, you can just pick off the point at (200,150) in the cloud.
-	int row = 150;
-	int col = 300;
+	// Say you found something interesting at pixel (300,150) in the image and want to know its position in 3D space.  Because the cloud data from the Kinect is organized, you can just pick off the point at (300,150) in the cloud.
+	int row = 150; int col = 300;
 	cv::circle(cv_ptr->image, cv::Point(col,row), 10, CV_RGB(255,0,0));
 	
+	// Get the corresponding 3D point
 	pcl::PointXYZRGB p = cloud.at(col, row);
 	
 	ROS_INFO_STREAM(boost::format("Pixel (%d,%d) maps to 3D point (%.2f,%.2f,%.2f) in TF frame = \"%s\"")
@@ -86,7 +85,7 @@ int main (int argc, char** argv)
 	ros::NodeHandle private_nh("~");
 	image_transport::ImageTransport it(nh);
 	
-	// Get some parameters
+	// Get some parameters (optional)
 	string mystringparam;
 	double mydoubleparam;
 	private_nh.param("test" , mystringparam, string("this is a default value"));
