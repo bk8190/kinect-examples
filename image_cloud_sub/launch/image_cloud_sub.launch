@@ -1,0 +1,20 @@
+<!---->
+<launch>
+
+	<!-- Setup the debugging prefix.  If you set default to "true" this will make the node run under gdb, which is useful for debugging. -->
+	<arg name="debug" default="false"/>
+	<arg if="$(arg debug)" name="launch_prefix" value="gdb -ex run -args"/>
+	<arg unless="$(arg debug)" name="launch_prefix" value=""/>
+	
+	<node pkg="image_cloud_sub" type="image_cloud_sub" name="image_cloud_sub"
+		output="screen" launch-prefix="$(arg launch_prefix)">
+		
+		<remap from="in_image"    to="/camera/rgb/image_rect_color"   />
+		<remap from="in_cam_info" to="/camera/rgb/camera_info"        />
+		<remap from="in_cloud"    to="/camera/depth_registered/points"/>
+	
+		<param name="test"  type="string" value="hello123"/>
+		<param name="test2" type="double" value="3.141"   />
+	</node>
+
+</launch>

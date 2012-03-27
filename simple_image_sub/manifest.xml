@@ -1,0 +1,21 @@
+<package>
+  <description brief="simple_image_sub">
+
+     simple_image_sub
+
+  </description>
+  <author>Bill</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/simple_image_sub</url>
+
+  <depend package="roscpp"/>
+  <depend package="sensor_msgs"/>
+  
+  <depend package="image_transport"/>
+  <depend package="opencv2"/>
+  <depend package="cv_bridge"/>
+  
+</package>
+
+

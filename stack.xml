@@ -1,0 +1,14 @@
+<stack>
+  <description brief="kinect-examples">kinect-examples</description>
+  <author>Maintained by Bill</author>
+  <license>BSD</license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/kinect-examples</url>
+  <depend stack="common_msgs" /> <!-- sensor_msgs -->
+  <depend stack="image_common" /> <!-- image_transport -->
+  <depend stack="perception_pcl" /> <!-- pcl, pcl_ros -->
+  <depend stack="ros" />
+  <depend stack="ros_comm" /> <!-- roscpp -->
+  <depend stack="vision_opencv" /> <!-- opencv2, cv_bridge -->
+
+</stack>

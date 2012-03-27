@@ -1,0 +1,17 @@
+<!---->
+<launch>
+
+	<!-- Simple image subscriber/publisher -->
+	<node pkg="simple_image_sub" type="simple_image_sub" name="simple_image_sub" output="screen" >	
+		<remap from="in_image" to="/camera/rgb/image_rect_color"/>
+	
+		<param name="test"  type="string" value="hello123"/>
+		<param name="test2" type="double" value="3.141"   />
+	</node>
+	
+	<!-- A node to view the output of simple_image_sub -->
+	<node pkg="image_view" type="image_view" name="rgb_image_viewer" output="screen">
+		<remap from="image" to="/simple_image_sub/out_image"/>
+	</node>
+
+</launch>
