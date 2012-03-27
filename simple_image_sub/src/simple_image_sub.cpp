@@ -2,6 +2,9 @@
 // Simple program that subscribes to and publishes an image
 // 3/26/2012
 
+// The following cheat sheet is a nice OpenCV reference
+// http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CCgQFjAA&url=http%3A%2F%2Fwear-ar-fhbingen.googlecode.com%2Ffiles%2Fopencv_cheatsheet.pdf&ei=jx1xT-6fO5GL0QG2v_TRAQ&usg=AFQjCNGcF5Vy3A2rk_VHR_Vw1d-EWuEKGQ&sig2=Qo7gbfcpZ9PJa3ROAdh-_w
+
 #include <ros/ros.h>
 #include <boost/format.hpp>
 
@@ -27,7 +30,7 @@ void imageCB(const sensor_msgs::ImageConstPtr& image_msg)
 		cv_ptr = cv_bridge::toCvCopy(image_msg);
 	}
 	catch (cv_bridge::Exception& e) {
-		ROS_ERROR("cv_bridge exception: %s", e.what());
+		ROS_ERROR_STREAM("cv_bridge exception: " << e.what());
 		return;
 	}
 	
