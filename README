@@ -1,0 +1,6 @@
+First, do
+$ roslaunch kinect-examples bringup_kinect.launch
+
+Then, do one of the following
+$ roslaunch simple_image_sub simple_image_sub.launch
+$ roslaunch image_cloud_sub image_cloud_sub.launch
