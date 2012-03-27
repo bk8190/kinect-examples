@@ -71,7 +71,7 @@ void allCB(const sensor_msgs::ImageConstPtr& image_msg,
 	
 	// Show the image.  The window does not update without the cvWaitKey.
 	cv::imshow(window_name_.c_str(), cv_ptr->image);
-	cvWaitKey(1);
+	cvWaitKey(5);
 	
 	// Publish the modified image
   image_pub_.publish(cv_ptr->toImageMsg());
