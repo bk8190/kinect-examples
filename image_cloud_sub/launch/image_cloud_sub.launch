@@ -15,6 +15,7 @@
 	
 		<param name="test"  type="string" value="hello123"/>
 		<param name="test2" type="double" value="3.141"   />
+		<param name="global_frame" type="string" value="base_link"   />
 	</node>
 
 </launch>
